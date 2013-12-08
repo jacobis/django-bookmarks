@@ -7,7 +7,7 @@ def main_page(request):
     <html>
       <head><title>%s</title></head>
       <body>
-        <h1><%s/h1><p>%s</p>
+        <h1>%s</h1><p>%s</p>
       </body>
     </html>
   ''' % (

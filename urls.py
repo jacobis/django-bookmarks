@@ -5,5 +5,5 @@ from bookmarks.views import *
 
 
 urlpatterns = patterns('',
-    (r'^$/', main_page),
+    (r'^$', main_page),
 )
