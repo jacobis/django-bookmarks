@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import Context
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
+import settings
+
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
 def main_page(request):
+    print settings.STATIC_ROOT
     return render_to_response(
         'main_page.html',
         {'user': request.user}

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>장고 북마크 | {% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="/assets/stylesheets/style.css" type="text/css" />
+	</head>
+	<body>
+		<div class="container">
+			<div id="nav">
+				<a href="/">home</a> |
+				{% if user.is_authenticated %}
+					{{ user.username }}님
+					(<a href="/logout">logout</a>)
+				{% else %}
+					<a href="/login">login</a>
+				{% endif %}
+			</div>
+			<p class="title">{% block head %}{% endblock %}</p>
+			{% block content %}{% endblock %}
+		</div>
+		<script src="/assets/javascripts/bootstrap.min.js"></script>
+	</body>
+</html>
