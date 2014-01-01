@@ -5,6 +5,8 @@ from django.template import Context, RequestContext
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.models import User
 
 from bookmarks.models import *
@@ -52,6 +54,7 @@ def register_page(request):
     })
     return render_to_response('registration/register.html', variables)
 
+@login_required
 def bookmark_save_page(request):
     if request.method == 'POST':
         form = BookmarkSaveForm(request.POST)

@@ -12,6 +12,7 @@
 				<div id="user-links">
 					{% if user.is_authenticated %}
 						<a href="/password_change" class="username">{{ user.username }}</a>
+						<a href="/save">Add to bookmark</a>
 						<a href="/logout" class="sign_out">Sign out</a>
 					{% else %}
 						<a href="/register">Sign up</a>

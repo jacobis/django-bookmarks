@@ -15,8 +15,8 @@
 	color: #333;
 	font-weight: bold;
 }
-#user-links .sign_out, #user-links .sign_in {
-	margin-left: 5px;
+#user-links a {
+	margin-left: 10px;
 }
 #content {
 	padding: 15px 0;
