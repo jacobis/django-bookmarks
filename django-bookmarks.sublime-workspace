@@ -263,7 +263,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 96.0,
+		"height": 0.0,
 		"where_history":
 		[
 			""
@@ -991,7 +991,7 @@
 		[
 			[
 				"",
-				"/Users/jacob/works/couple-mission/couple-mission.sublime-project"
+				"/Users/jacob/works/django-bookmarks/templates/registration/django.sublime-project"
 			]
 		],
 		"width": 380.0
