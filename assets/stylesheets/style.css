@@ -1,6 +1,26 @@
 #nav {
+	overflow: hidden;
+	padding: 15px 0;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #e5e5e5;
+}
+#nav .to_home {
+	float: left;
+	font-weight: bold;
+}
+#user-links {
 	float: right;
 }
-.title {
+#user-links .username {
+	color: #333;
 	font-weight: bold;
+}
+#user-links .sign_out, #user-links .sign_in {
+	margin-left: 5px;
+}
+#content {
+	padding: 15px 0;
+}
+input {
+	display: block;
 }
