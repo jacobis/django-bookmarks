@@ -3,7 +3,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import Context, RequestContext
 from django.template.loader import get_template
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -22,17 +22,14 @@ def main_page(request):
     )
 
 def user_page(request, username):
-    try:
-        user = User.objects.get(username=username)
-    except:
-        raise Http404('사용자를 찾을 수 없습니다.')
-
-    bookmarks = user.bookmark_set.all()
+    user = get_object_or_404(User, username=username)
+    bookmarks = user.bookmark_set.order_by('-id')
 
     template = get_template('user_page.html')
     variables = RequestContext(request, {
         'username': username,
-        'bookmarks': bookmarks
+        'bookmarks': bookmarks,
+        'show_tags': True
         })
     return render_to_response('user_page.html', variables)
 
