@@ -3,7 +3,7 @@
 		{% for bookmark in bookmarks %}
 			<li>
 				<p class="title">
-					<a href="{{ bookmark.link.url }}">{{ bookmark.title }}</a>
+					<a href="{{ bookmark.link.url|escape }}">{{ bookmark.title|escape }}</a>
 					 - {{ bookmark.link.url }}
 				</p>
 
@@ -13,7 +13,7 @@
 						<ul class="tags">
 							{% for tag in bookmark.tag_set.all %}
 								<li>
-									<a href="/tag/{{ tag.name }}">{{ tag.name }}</a>
+									<a href="/tag/{{ tag.name|urlencode }}">{{ tag.name|escape }}</a>
 								</li>
 							{% endfor %}
 						</ul>

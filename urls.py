@@ -11,6 +11,7 @@ from bookmarks.views import *
 urlpatterns = patterns('',
     (r'^$', main_page),
     (r'^user/(\w+)/$', user_page),
+    (r'^tag/$', tag_cloud_page),
     (r'^tag/([^\s]+)/$', tag_page),
 
     # auth
