@@ -33,6 +33,17 @@ def user_page(request, username):
         })
     return render_to_response('user_page.html', variables)
 
+def tag_page(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    bookmarks = tag.bookmarks.order_by('-id')
+    variables = RequestContext(request, {
+        'bookmarks': bookmarks,
+        'tag_name': tag.name,
+        'show_tags': True,
+        'show_user': True
+    })
+    return render_to_response('tag_page.html', variables)
+
 def register_page(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
