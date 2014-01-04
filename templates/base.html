@@ -4,6 +4,7 @@
 		<title>장고 북마크 | {% block title %}{% endblock %}</title>
 		<link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="/assets/stylesheets/style.css" type="text/css" />
+		{% block external %}{% endblock %}
 	</head>
 	<body>
 		<div id="nav">
@@ -26,6 +27,7 @@
 				{% block content %}{% endblock %}
 			</div>
 		</div>
+		<script src="/assets/javascripts/jquery.js"></script>
 		<script src="/assets/javascripts/bootstrap.min.js"></script>
 	</body>
 </html>
