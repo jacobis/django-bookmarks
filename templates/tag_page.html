@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ tag_name }}{% endblock %}
+{% block title %}{{ tag_name|escape }}{% endblock %}
 {% block content %}
 	{% include "bookmark_list.html" %}
 {% endblock %}

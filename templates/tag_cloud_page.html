@@ -3,7 +3,7 @@
 {% block content %}
 	<div id="tag-cloud">
 		{% for tag in tags %}
-			<a href="/tag/{{ tag.name }}/" class="tag-cloud-{{ tag.weight }}">{{ tag.name }}</a>
+			<a href="/tag/{{ tag.name|escape }}/" class="tag-cloud-{{ tag.weight }}">{{ tag.name|escape }}</a>
 		{% endfor %}
 	</div>
 {% endblock %}
