@@ -4,6 +4,8 @@
 		<title>장고 북마크 | {% block title %}{% endblock %}</title>
 		<link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="/assets/stylesheets/style.css" type="text/css" />
+		<script src="/assets/javascripts/jquery.js"></script>
+		<script src="/assets/javascripts/bootstrap.min.js"></script>
 		{% block external %}{% endblock %}
 	</head>
 	<body>
@@ -14,6 +16,7 @@
 					{% if user.is_authenticated %}
 						<a href="/password_change" class="username">{{ user.username }}</a>
 						<a href="/save">Add to bookmark</a>
+						<a href="/search">Search</a>
 						<a href="/logout" class="sign_out">Sign out</a>
 					{% else %}
 						<a href="/register">Sign up</a>
@@ -27,7 +30,5 @@
 				{% block content %}{% endblock %}
 			</div>
 		</div>
-		<script src="/assets/javascripts/jquery.js"></script>
-		<script src="/assets/javascripts/bootstrap.min.js"></script>
 	</body>
 </html>

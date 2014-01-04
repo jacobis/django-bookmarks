@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block external %}
+	<script type="text/javascript" src="/assets/javascripts/search.js"></script>
+{% endblock %}
+{% block title %}북마크 검색{% endblock %}
+{% block content %}
+	<form action="." method="get" id="search-form">
+		{{ form.as_p }}
+		<input type="submit" value="검색" />
+	</form>
+	<div id="search-results">
+		{% if show_results %}
+			{% include 'bookmark_list.html' %}
+		{% endif %}
+	</div>
+{% endblock %}

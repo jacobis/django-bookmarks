@@ -2,9 +2,11 @@
 	<ul class="bookmarks">
 		{% for bookmark in bookmarks %}
 			<li>
-				<p class="title">
-					<a href="{{ bookmark.link.url|escape }}">{{ bookmark.title|escape }}</a>
-					 - {{ bookmark.link.url }}
+				<p>
+					<a href="{{ bookmark.link.url|escape }}" class="title">{{ bookmark.title|escape }}</a>
+					{% if show_edit %}
+						<a href="/save/?url={{ bookmark.link.url|urlencode }}" class="edit">[edit]</a>
+					{% endif %}
 				</p>
 
 				{% if show_tags %}

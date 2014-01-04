@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     (r'^user/(\w+)/$', user_page),
     (r'^tag/$', tag_cloud_page),
     (r'^tag/([^\s]+)/$', tag_page),
+    (r'^search/$', search_page),
 
     # auth
     (r'^login/$', 'django.contrib.auth.views.login'),

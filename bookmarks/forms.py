@@ -36,3 +36,10 @@ class BookmarkSaveForm(forms.Form):
 	url = forms.URLField(label='주소', widget=forms.TextInput(attrs={'size': 64}))
 	title = forms.CharField(label='제목', widget=forms.TextInput(attrs={'size': 64}))
 	tags = forms.CharField(label='태그', required=False, widget=forms.TextInput(attrs={'size': 64}))
+
+
+class SearchForm(forms.Form):
+	query = forms.CharField(
+		label='검색어를 입력하세요.',
+		widget=forms.TextInput(attrs={'size': 32})
+	)

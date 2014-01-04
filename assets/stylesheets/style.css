@@ -34,6 +34,9 @@ input {
 .bookmarks .title {
 	font-weight: bold;
 }
+.bookmarks .edit {
+	font-size: 70%;
+}
 .bookmarks .tags, .bookmarks .tags li {
 	display: inline;
 	padding: 0;
