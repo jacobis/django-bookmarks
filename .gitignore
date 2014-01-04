@@ -23,4 +23,8 @@ celerybeat-schedule
 *.log
 *.pot
 
-local_settings.py
+# Django database file:
+bookmarksdb
+
+# Sublime setting files:
+*.sublime*
