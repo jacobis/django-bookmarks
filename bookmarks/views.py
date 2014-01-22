@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import simplejson
 
 from django.contrib.auth.models import User
 
@@ -192,3 +193,12 @@ def search_page(request):
         return render_to_response('bookmark_list.html', variables)
     else:
         return render_to_response('search.html', variables)
+
+
+# Ajax
+
+def ajax_tag_autocomplete(request):
+    if 'term' in request.GET:
+        tags = Tag.objects.filter(name__istartswith=request.GET['term'])[:10]
+        return HttpResponse(simplejson.dumps([tag.name for tag in tags]))
+    return HttpResponse()

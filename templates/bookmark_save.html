@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}북마크 저장{% endblock %}
+{% block external %}
+	<link rel="stylesheet" href="/assets/stylesheets/jquery.ui.autocomplete.css" type="text/css" />
+	<script src="/assets/javascripts/jquery.ui.autocomplete.js"></script>
+	<script src="/assets/javascripts/tag_autocomplete.js"></script>
+{% endblock %}
 {% block content %}
 	{% include "bookmark_save_form.html" %}
 {% endblock %}
