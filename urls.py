@@ -25,7 +25,9 @@ urlpatterns = patterns('',
     (r'^register/$', register_page),
     (r'^register/success/$', direct_to_template, {'template': 'registration/register_success.html'}),
 
+    # account management
     (r'^save/$', bookmark_save_page),
+    (r'^vote/$', bookmark_vote_page),
 
     # Ajax
     (r'^ajax/tag/autocomplete/$', ajax_tag_autocomplete),

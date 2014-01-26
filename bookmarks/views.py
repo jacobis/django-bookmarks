@@ -19,9 +19,11 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 def main_page(request):
-    return render_to_response(
-        'main_page.html', RequestContext(request)
-    )
+    shared_bookmarks = SharedBookmark.objects.order_by('-date')[:10]
+    variables = RequestContext(request, {
+        'shared_bookmarks': shared_bookmarks
+    })
+    return render_to_response('main_page.html', variables)
 
 def user_page(request, username):
     user = get_object_or_404(User, username=username)
@@ -148,28 +150,26 @@ def bookmark_save_page(request):
     else:
         return render_to_response('bookmark_save.html', variables)
 
-def _bookmark_save(request, form):
-    link, dummy = Link.objects.get_or_create(
-        url = form.cleaned_data['url']
-    )
+@login_required
+def bookmark_vote_page(request):
+    if request.GET.has_key('id'):
+        try:
+            id = request.GET['id']
+            shared_bookmark = SharedBookmark.objects.get(id=id)
+            user_voted = shared_bookmark.users_voted.filter(username=request.user.username)
 
-    bookmark, created = Bookmark.objects.get_or_create(
-        user = request.user,
-        link = link
-    )
+            if not user_voted:
+                shared_bookmark.votes += 1
+                shared_bookmark.users_voted.add(request.user)
+                shared_bookmark.save()
 
-    bookmark.title = form.cleaned_data['title']
+        except ObjectDoesNotExist:
+            raise Http404('북마크를 찾을 수 없습니다.')
 
-    if not created:
-        bookmark.tag_set.clear()
+        if request.META.has_key('HTTP_REFERER'):
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
-    tag_names = form.cleaned_data['tags'].split()
-    for tag_name in tag_names:
-        tag, dummy = Tag.objects.get_or_create(name=tag_name)
-        bookmark.tag_set.add(tag)
-
-    bookmark.save()
-    return bookmark
+        return HttpResponseRedirect('/')
 
 def search_page(request):
     form = SearchForm()
@@ -194,6 +194,34 @@ def search_page(request):
     else:
         return render_to_response('search.html', variables)
 
+def _bookmark_save(request, form):
+    link, dummy = Link.objects.get_or_create(
+        url = form.cleaned_data['url']
+    )
+
+    bookmark, created = Bookmark.objects.get_or_create(
+        user = request.user,
+        link = link
+    )
+
+    bookmark.title = form.cleaned_data['title']
+
+    if not created:
+        bookmark.tag_set.clear()
+
+    tag_names = form.cleaned_data['tags'].split()
+    for tag_name in tag_names:
+        tag, dummy = Tag.objects.get_or_create(name=tag_name)
+        bookmark.tag_set.add(tag)
+
+    if form.cleaned_data['share']:
+        shared_bookmark, created = SharedBookmark.objects.get_or_create(bookmark=bookmark)
+        if created:
+            shared_bookmark.users_voted.add(request.user)
+            shared_bookmark.save()
+
+    bookmark.save()
+    return bookmark
 
 # Ajax
 

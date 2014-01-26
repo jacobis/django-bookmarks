@@ -36,6 +36,7 @@ class BookmarkSaveForm(forms.Form):
 	url = forms.URLField(label='주소', widget=forms.TextInput(attrs={'size': 64}))
 	title = forms.CharField(label='제목', widget=forms.TextInput(attrs={'size': 64}))
 	tags = forms.CharField(label='태그', required=False, widget=forms.TextInput(attrs={'size': 64}))
+	share = forms.BooleanField(label='공유하기', required=False)
 
 
 class SearchForm(forms.Form):
