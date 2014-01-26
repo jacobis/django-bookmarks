@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime, timedelta
+
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import Context, RequestContext
 from django.template.loader import get_template
@@ -193,6 +195,16 @@ def search_page(request):
         return render_to_response('bookmark_list.html', variables)
     else:
         return render_to_response('search.html', variables)
+
+def popular_page(request):
+    today = datetime.today()
+    yesterday = today - timedelta(1)
+    shared_bookmarks = SharedBookmark.objects.filter(date__gt=yesterday)
+    shared_bookmarks = shared_bookmarks.order_by('-votes')[:10]
+    variables = RequestContext(request, {
+        'shared_bookmarks': shared_bookmarks
+    })
+    return render_to_response('popular_page.html', variables)
 
 def _bookmark_save(request, form):
     link, dummy = Link.objects.get_or_create(
