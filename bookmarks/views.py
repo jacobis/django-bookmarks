@@ -98,6 +98,15 @@ def register_page(request):
     })
     return render_to_response('registration/register.html', variables)
 
+def bookmark_page(request, bookmark_id):
+    shared_bookmark = get_object_or_404(
+        SharedBookmark, id=bookmark_id
+    )
+    variables = RequestContext(request, {
+        'sahred_boomark': shared_bookmark
+    })
+    return render_to_response('bookmark_page.html', variables)
+
 @login_required
 def bookmark_save_page(request):
     ajax = request.GET.has_key('ajax')

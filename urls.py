@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     (r'^tag/$', tag_cloud_page),
     (r'^tag/([^\s]+)/$', tag_page),
     (r'^search/$', search_page),
+    (r'^bookmark/(\d+)/$', bookmark_page),
 
     # auth
     (r'^login/$', 'django.contrib.auth.views.login'),
@@ -29,6 +30,9 @@ urlpatterns = patterns('',
     # account management
     (r'^save/$', bookmark_save_page),
     (r'^vote/$', bookmark_vote_page),
+
+    # comments
+    url(r'^comments/', include('django.contrib.comments.urls')),
 
     # Ajax
     (r'^ajax/tag/autocomplete/$', ajax_tag_autocomplete),
