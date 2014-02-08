@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}댓글을 입력했습니다.{% endblock title %}
+{% block content %}
+	<p>댓글 입력이 완료되었습니다.</p>
+	{% if comment %}
+		<p><a href="/bookmark/{{ comment.object_pk }}/"> 댓글을 확인하세요.</a></p>
+	{% endif %}
+{% endblock content %}
